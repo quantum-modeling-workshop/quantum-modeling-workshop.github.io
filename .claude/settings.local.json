@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:conf.researchr.org)",
+      "Bash(curl -s -L \"https://conf.researchr.org/home/models-2026\" -o ./_models2026.html)",
+      "Bash(curl *)"
+    ]
+  }
+}

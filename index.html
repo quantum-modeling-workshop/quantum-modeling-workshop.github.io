@@ -2,150 +2,755 @@
 <html lang="en-US">
 <head>
 <meta charset="UTF-8">
-<title>QMod &#8211; Workshop on Quantum Modeling &#8211; MODELS 2026</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QMod &#8211; 2nd Workshop on Quantum Modeling &#8211; MODELS 2026</title>
+<meta name="description" content="QMod 2026 — the 2nd Workshop on Quantum Modeling, co-located with MODELS 2026. Bringing together model-driven engineering and quantum computing communities.">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 <style>
-ul li, ol li {
-	margin: 8px 0;
+:root {
+	--bg: #0b1020;
+	--bg-soft: #111835;
+	--surface: #ffffff;
+	--surface-soft: #f6f7fb;
+	--border: #e4e7ef;
+	--text: #1a2238;
+	--text-muted: #5b6478;
+	--primary: #4338ca;
+	--primary-dark: #3730a3;
+	--accent: #06b6d4;
+	--accent-2: #a855f7;
+	--med: #e76f51;          /* Mediterranean / Málaga terracotta */
+	--med-soft: #f4a261;     /* warm sand */
+	--gradient: linear-gradient(135deg, #4338ca 0%, #7c3aed 45%, #06b6d4 100%);
+	--shadow-sm: 0 1px 2px rgba(15, 23, 42, .06);
+	--shadow: 0 4px 24px rgba(15, 23, 42, .08);
+	--radius: 14px;
 }
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
 body {
-	font-family: "Open Sans", Helvetica, Arial, sans-serif;
-	font-size: 14px;
-	font-size: 0.875rem;
+	margin: 0;
+	font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+	font-size: 16px;
 	line-height: 1.7;
-	color: #404040;
+	color: var(--text);
+	background: var(--surface-soft);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
-h2 {
+
+a { color: var(--primary); text-decoration: none; transition: color .15s ease; }
+a:hover { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+
+/* ---------- HERO ---------- */
+.hero {
+	position: relative;
+	overflow: hidden;
+	color: #fff;
+	background: var(--bg);
+	padding: 88px 24px 96px;
+	isolation: isolate;
+}
+.hero::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background:
+		radial-gradient(60% 60% at 15% 20%, rgba(124, 58, 237, .35), transparent 60%),
+		radial-gradient(50% 50% at 85% 30%, rgba(6, 182, 212, .28), transparent 65%),
+		radial-gradient(35% 45% at 90% 95%, rgba(231, 111, 81, .28), transparent 65%),
+		radial-gradient(40% 40% at 50% 100%, rgba(67, 56, 202, .35), transparent 60%);
+	z-index: -2;
+}
+.hero::after {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image:
+		linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+	background-size: 48px 48px;
+	mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+	-webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+	z-index: -1;
+}
+.hero-inner {
+	max-width: 980px;
+	margin: 0 auto;
+	text-align: center;
+}
+.eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 12px;
+	letter-spacing: .18em;
 	text-transform: uppercase;
-	font-size: 15px;
-	font-size: 0.9375rem;
+	color: #cbd5ff;
+	background: rgba(255,255,255,.06);
+	border: 1px solid rgba(255,255,255,.12);
+	padding: 6px 14px;
+	border-radius: 999px;
+	backdrop-filter: blur(8px);
+}
+.eyebrow .dot {
+	width: 6px; height: 6px; border-radius: 50%;
+	background: #06b6d4;
+	box-shadow: 0 0 10px #06b6d4;
+}
+
+/* "Part of MODELS '26" host card with the actual conference logo */
+.host-card {
+	display: inline-flex;
+	align-items: center;
+	gap: 16px;
+	padding: 10px 22px 10px 14px;
+	border-radius: 14px;
+	background: rgba(255,255,255,.92);
+	border: 1px solid rgba(255,255,255,.6);
+	color: #1a2238;
+	margin-bottom: 26px;
+	box-shadow: 0 14px 40px rgba(231, 111, 81, .18), 0 4px 14px rgba(0,0,0,.18);
+	transition: transform .15s ease, box-shadow .15s ease;
+	text-decoration: none;
+}
+.host-card:hover {
+	transform: translateY(-1px);
+	box-shadow: 0 18px 48px rgba(231, 111, 81, .28), 0 6px 18px rgba(0,0,0,.22);
+	text-decoration: none;
+	color: #1a2238;
+}
+.host-card img {
+	width: 56px;
+	height: 56px;
+	object-fit: contain;
+	display: block;
+}
+.host-card .text { display: flex; flex-direction: column; line-height: 1.2; text-align: left; }
+.host-card .label {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 10px;
+	letter-spacing: .22em;
+	text-transform: uppercase;
+	color: var(--med);
+	font-weight: 600;
+}
+.host-card .wordmark {
+	font-family: "Space Grotesk", sans-serif;
 	font-weight: 700;
+	font-size: 1.1rem;
+	letter-spacing: -0.01em;
+	color: #1a2238;
+	margin-top: 2px;
 }
-h3 {
-	font-size: 15px;
-	font-size: 0.9375rem;
+.host-card .sub {
+	font-size: .78rem;
+	color: var(--text-muted);
+	margin-top: 2px;
+}
+@media (max-width: 560px) {
+	.host-card { padding: 8px 16px 8px 10px; gap: 12px; }
+	.host-card img { width: 44px; height: 44px; }
+	.host-card .wordmark { font-size: 1rem; }
+	.host-card .sub { display: none; }
+}
+.hero h1 {
+	font-family: "Space Grotesk", "Inter", sans-serif;
+	font-size: clamp(2.2rem, 5.5vw, 4rem);
+	line-height: 1.05;
 	font-weight: 700;
+	margin: 22px 0 8px;
+	letter-spacing: -0.02em;
 }
-h1, h2, h3, h4, h5, h6 {
-	font-family: "Raleway", Helvetica, Arial, sans-serif;
-	color: #333333;
+.hero h1 .grad {
+	background: linear-gradient(90deg, #a5b4fc 0%, #67e8f9 50%, #c4b5fd 100%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
 }
+.hero h1 sup { font-size: .5em; vertical-align: super; }
+.hero .tagline {
+	margin: 0 auto;
+	max-width: 720px;
+	color: #d6dcef;
+	font-size: 1.05rem;
+}
+.hero .meta {
+	margin-top: 26px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px 14px;
+	justify-content: center;
+}
+.chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	background: rgba(255,255,255,.07);
+	border: 1px solid rgba(255,255,255,.14);
+	padding: 8px 14px;
+	border-radius: 999px;
+	font-size: .9rem;
+	color: #e6ebff;
+	backdrop-filter: blur(8px);
+}
+.chip svg { opacity: .85; }
+.chip.warm {
+	background: rgba(231, 111, 81, .12);
+	border-color: rgba(244, 162, 97, .35);
+	color: #ffd9c8;
+}
+.chip.warm svg { color: var(--med-soft); opacity: 1; }
+.cta-row {
+	margin-top: 30px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	justify-content: center;
+}
+.btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 22px;
+	border-radius: 10px;
+	font-weight: 600;
+	font-size: .95rem;
+	transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+	border: 1px solid transparent;
+	cursor: pointer;
+}
+.btn-primary {
+	background: #fff;
+	color: var(--bg);
+	box-shadow: 0 8px 24px rgba(6, 182, 212, .25);
+}
+.btn-primary:hover { transform: translateY(-1px); text-decoration: none; box-shadow: 0 12px 28px rgba(6, 182, 212, .35); }
+.btn-ghost {
+	background: rgba(255,255,255,.06);
+	color: #fff;
+	border-color: rgba(255,255,255,.18);
+}
+.btn-ghost:hover { background: rgba(255,255,255,.12); text-decoration: none; color: #fff; }
+
+/* ---------- LAYOUT ---------- */
+.shell {
+	max-width: 1100px;
+	margin: 0 auto;
+	padding: 56px 24px 96px;
+	display: grid;
+	grid-template-columns: 220px minmax(0, 1fr);
+	gap: 56px;
+}
+@media (max-width: 880px) {
+	.shell { grid-template-columns: 1fr; gap: 24px; padding-top: 32px; }
+	.toc { position: static !important; }
+}
+
+/* ---------- TOC ---------- */
+.toc {
+	position: sticky;
+	top: 24px;
+	align-self: start;
+	font-size: .9rem;
+}
+.toc-title {
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 11px;
+	letter-spacing: .2em;
+	text-transform: uppercase;
+	color: var(--text-muted);
+	margin-bottom: 10px;
+}
+.toc ul { list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--border); }
+.toc li { margin: 0; }
+.toc a {
+	display: block;
+	padding: 7px 14px;
+	margin-left: -2px;
+	border-left: 2px solid transparent;
+	color: var(--text-muted);
+	font-weight: 500;
+}
+.toc a:hover { color: var(--primary); border-left-color: var(--primary); text-decoration: none; }
+
+/* ---------- ARTICLE ---------- */
+article { min-width: 0; }
+
+section.block {
+	background: var(--surface);
+	border: 1px solid var(--border);
+	border-radius: var(--radius);
+	padding: 32px 36px;
+	margin-bottom: 24px;
+	box-shadow: var(--shadow-sm);
+}
+@media (max-width: 600px) { section.block { padding: 24px 22px; } }
+
+section.block h2 {
+	font-family: "Space Grotesk", sans-serif;
+	font-size: 1.4rem;
+	font-weight: 700;
+	color: var(--text);
+	margin: 0 0 6px;
+	letter-spacing: -0.01em;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+section.block h2::before {
+	content: "";
+	width: 6px;
+	height: 22px;
+	border-radius: 3px;
+	background: var(--gradient);
+}
+.section-lede {
+	color: var(--text-muted);
+	margin: 0 0 18px;
+	font-size: .95rem;
+}
+
+article p { margin: 0 0 14px; }
+article ul, article ol { padding-left: 22px; margin: 8px 0 16px; }
+article li { margin: 6px 0; }
+article li::marker { color: var(--primary); }
+
+/* ---------- TWO-COL CARDS (topics, motivation) ---------- */
+.split {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 16px;
+	margin-top: 8px;
+}
+@media (max-width: 720px) { .split { grid-template-columns: 1fr; } }
+
+.tile {
+	background: var(--surface-soft);
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 20px 22px;
+	position: relative;
+	overflow: hidden;
+}
+.tile.full { grid-column: 1 / -1; }
+.tile h3 {
+	margin: 0 0 10px;
+	font-family: "Space Grotesk", sans-serif;
+	font-size: 1.05rem;
+	font-weight: 600;
+	color: var(--text);
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.tile h3 .tag {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 10px;
+	letter-spacing: .15em;
+	text-transform: uppercase;
+	padding: 3px 8px;
+	border-radius: 4px;
+	background: rgba(67, 56, 202, .1);
+	color: var(--primary);
+}
+.tile.accent h3 .tag { background: rgba(6, 182, 212, .12); color: #0891b2; }
+.tile.violet h3 .tag { background: rgba(168, 85, 247, .12); color: #7e22ce; }
+.tile ul { margin: 6px 0 0; padding-left: 18px; }
+.tile li { font-size: .92rem; line-height: 1.55; color: #2c3550; }
+
+/* ---------- DATES ---------- */
+.dates {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 14px;
+	margin: 8px 0 0;
+}
+@media (max-width: 720px) { .dates { grid-template-columns: 1fr; } }
+.date-card {
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 20px;
+	background: var(--surface-soft);
+	position: relative;
+}
+.date-card .label {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 11px;
+	letter-spacing: .15em;
+	text-transform: uppercase;
+	color: var(--text-muted);
+	margin-bottom: 6px;
+}
+.date-card .day {
+	font-family: "Space Grotesk", sans-serif;
+	font-size: 1.5rem;
+	font-weight: 700;
+	color: var(--text);
+	letter-spacing: -0.01em;
+}
+.date-card.primary {
+	background: linear-gradient(135deg, rgba(67, 56, 202, .07), rgba(6, 182, 212, .07));
+	border-color: rgba(67, 56, 202, .25);
+}
+.dates-note {
+	margin-top: 12px;
+	font-size: .85rem;
+	color: var(--text-muted);
+	font-family: "JetBrains Mono", monospace;
+}
+
+/* ---------- SUBMISSION CATEGORIES ---------- */
+.cats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 6px 0 18px; }
+@media (max-width: 720px) { .cats { grid-template-columns: 1fr; } }
+.cat {
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 18px 20px;
+	background: var(--surface-soft);
+}
+.cat .pages {
+	font-family: "JetBrains Mono", monospace;
+	font-size: 11px;
+	color: var(--accent);
+	letter-spacing: .12em;
+	text-transform: uppercase;
+}
+.cat strong {
+	display: block;
+	margin: 6px 0 6px;
+	font-family: "Space Grotesk", sans-serif;
+	font-size: 1.05rem;
+	color: var(--text);
+}
+.cat p { margin: 0; font-size: .9rem; color: var(--text-muted); }
+
+/* ---------- CHAIRS ---------- */
+.chairs {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 14px;
+}
+@media (max-width: 720px) { .chairs { grid-template-columns: 1fr; } }
+.chair {
+	background: var(--surface-soft);
+	border: 1px solid var(--border);
+	border-radius: 12px;
+	padding: 20px;
+	display: flex;
+	gap: 14px;
+	align-items: flex-start;
+}
+.avatar {
+	width: 44px;
+	height: 44px;
+	border-radius: 50%;
+	background: var(--gradient);
+	color: #fff;
+	display: grid;
+	place-items: center;
+	font-family: "Space Grotesk", sans-serif;
+	font-weight: 700;
+	font-size: 1rem;
+	flex: 0 0 44px;
+	letter-spacing: .02em;
+}
+.chair .name {
+	font-family: "Space Grotesk", sans-serif;
+	font-weight: 600;
+	color: var(--text);
+	display: block;
+	margin-bottom: 2px;
+}
+.chair .aff { font-size: .85rem; color: var(--text-muted); line-height: 1.45; }
+
+/* ---------- CALLOUT ---------- */
+.callout {
+	border-left: 4px solid var(--accent);
+	background: linear-gradient(90deg, rgba(6, 182, 212, .07), rgba(6, 182, 212, 0));
+	padding: 16px 20px;
+	border-radius: 8px;
+	margin: 10px 0 0;
+	font-size: .95rem;
+}
+.callout strong { color: var(--primary-dark); }
+
+/* ---------- TBA ---------- */
+.tba {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px 12px;
+	border-radius: 6px;
+	background: rgba(168, 85, 247, .1);
+	color: #7e22ce;
+	font-family: "JetBrains Mono", monospace;
+	font-size: .8rem;
+	letter-spacing: .1em;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+	background: var(--bg);
+	color: #c8cfe6;
+	padding: 32px 24px;
+	text-align: center;
+	font-size: .9rem;
+	border-top: 3px solid;
+	border-image: linear-gradient(90deg, var(--primary) 0%, var(--accent) 50%, var(--med) 100%) 1;
+}
+footer a { color: #a5b4fc; }
+footer .footer-row {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 10px;
+	justify-content: center;
+}
+footer .host-card.compact {
+	margin-bottom: 0;
+	padding: 6px 14px 6px 8px;
+	gap: 10px;
+	border-radius: 10px;
+}
+footer .host-card.compact img { width: 32px; height: 32px; }
+footer .host-card.compact .wordmark { font-size: .9rem; }
+footer .host-card.compact .label { font-size: 9px; }
 </style>
 </head>
 <body>
-<header>
-	<h1>2<sup>nd</sup> WORKSHOP ON QUANTUM MODELING (QMod)</h1>
-	<h3>co-located with <a href="https://conf.researchr.org/home/models-2026">MODELS 2026</a></h3>
+
+<header class="hero">
+	<div class="hero-inner">
+		<a class="host-card" href="https://conf.researchr.org/home/models-2026" aria-label="Part of the MODELS 2026 conference">
+			<img src="assets/models2026_logo.png" alt="MODELS 2026 logo" width="56" height="56">
+			<span class="text">
+				<span class="label">Part of</span>
+				<span class="wordmark">MODELS 2026</span>
+				<span class="sub">29<sup>th</sup> Int'l Conf. on Model Driven Engineering Languages &amp; Systems</span>
+			</span>
+		</a>
+		<br>
+		<span class="eyebrow"><span class="dot"></span>QMod 2026 &middot; Call for Papers</span>
+		<h1>2<sup>nd</sup> Workshop on <span class="grad">Quantum Modeling</span></h1>
+		<p class="tagline">Where model-driven engineering meets quantum computing — exploring how each field can advance the other through cross-pollination, new tools, and shared challenges.</p>
+		<div class="meta">
+			<span class="chip warm">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+				Málaga, Spain &middot; 4&ndash;9 Oct 2026
+			</span>
+			<span class="chip">
+				<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+				Submissions due July 3, 2026
+			</span>
+		</div>
+		<div class="cta-row">
+			<a class="btn btn-primary" href="https://easychair.org/conferences/?conf=quantummodeling2026">Submit on EasyChair &rarr;</a>
+			<a class="btn btn-ghost" href="#submission">Read the Call</a>
+		</div>
+	</div>
 </header>
-	
-<article>
-	
-<h2>Motivation</h2>
-<p>Model-driven engineering and quantum computing are two separate fields in computer science, which can clearly benefit from cross-pollination and collaboration. 
-  There are at least two ways in which such integration—which we call Quantum Modeling—can manifest:
-<ol>
-<li>Quantum for MDE. MDE can benefit from integrating quantum computing concepts and ideas. For example, by exploring quantum(-inspired) approaches for solving complex optimization problems that arise in model management, model testing, and model simulation to name just a few tasks.</li>
-<li>MDE for Quantum. Quantum software engineering can benefit from integrating concepts and ideas from MDE. For example, using domain-specific languages, models, and model transformations allows domain experts to express and manipulate quantum/classical solutions at a higher level of abstraction, while providing a systematic generation pipeline towards executable quantum programs in a number of different quantum platforms.</li>
-</ol>
-</p>
 
-<h2>Objectives</h2>
-<p>This workshop aims to bring together researchers from MDE with quantum computing backgrounds as well as researchers and practitioners from other domains with problems that might be addressed by a combination of such approaches to explore opportunities for cross-pollination, collaboration, and exciting new research avenues. 
-  Specifically, we have three objectives:
-<ol>
-<li>Further enlarge the community of researchers and practitioners interested in combining quantum and MDE;</li>
-<li>Highlight recent results in combining quantum and MDE techniques;</li>
-<li>Collect challenges and case studies to help the community to develop a common set of problems and a shared language.</li>
-</ol>
-</p>
-	
-<h2>Topics of interest include (but not limited to):</h2>
-<ul>
-  
-<li><strong>Quantum for MDE</strong>
-<ul>
-<li>Quantum(-inspired) algorithms/learning/optimization for modeling, model management, and model analysis & verification problems;</li>
-<li>Quantum(-assisted) planning and scheduling applied to modeling processes;</li>
-<li>Quantum-supported modeling assistants and tools;</li>
-<li>Model-based synthesis and data-driven model generators;</li>
-<li>Quantum-supported model-based digital twins;</li>
-<li>Model quality support based on quantum computing;</li>
-</ul>
-</li>
-  
-<li><strong>MDE for  Quantum</strong>
-<ul>
-<li>Domain-specific modeling for quantum computing and quantum/classical software systems;</li>
-<li>Model-driven processes for quantum software development;</li>
-<li>Using models for quantum program representation and traceability;</li>
-<li>Model-based code generation for quantum SDKs and platforms;</li>
-<li>Architectural modeling languages for hybrid software systems;</li>
-<li>MDE for quantum machine learning and quantum workflows;</li>
-<li>Model-driven quantum software migration and interoperability;</li>
-<li>Model-based testing/analysis/validation of hybrid software systems.</li>
-</ul>
-</li>
+<div class="shell">
 
-<li><strong>General</strong>
-<ul>
-<li>Quantum in teaching modeling and software engineering;</li>
-<li>Tools, frameworks, modeling standards;</li>
-<li>Experience reports, case studies, and empirical studies;</li>
-<li>Challenges and roadmaps.</li>
-</ul>
-</li>
+	<nav class="toc" aria-label="Sections">
+		<div class="toc-title">On this page</div>
+		<ul>
+			<li><a href="#motivation">Motivation</a></li>
+			<li><a href="#objectives">Objectives</a></li>
+			<li><a href="#topics">Topics</a></li>
+			<li><a href="#submission">Submission</a></li>
+			<li><a href="#open-access">Open Access</a></li>
+			<li><a href="#dates">Important Dates</a></li>
+			<li><a href="#chairs">Chairs</a></li>
+			<li><a href="#pc">Program Committee</a></li>
+		</ul>
+	</nav>
 
-</ul>
-	
-<h2>Submission</h2>
+	<article>
 
-<p>The QMod workshop invites authors to submit original and unpublished work. All papers must adhere, at time of submission, to the ACM formatting instructions (as provided by
-the conference).</p> 
-<p>Papers can be submitted in the following categories:</p>
-<ul>
-<li><strong>Full papers (max. 10 pages)</strong> presenting novel research ideas and significant empirical studies.</li>
-<li><strong>Tool demonstrations (max. 5 pages)</strong> presenting novel tools and software technologies.</li>
-<li><strong>Extended abstracts (max. 5 pages)</strong> raising new ideas, challenges, ongoing research or early research results, and future trends.</li>
-</ul>
-<p>
-Papers must be submitted electronically via 
-<a href="https://easychair.org/conferences/?conf=quantummodeling2026">EasyChair</a>
+		<section class="block" id="motivation">
+			<h2>Motivation</h2>
+			<p>Model-driven engineering and quantum computing are two separate fields in computer science, which can clearly benefit from cross-pollination and collaboration. There are at least two ways in which such integration — which we call <strong>Quantum Modeling</strong> — can manifest:</p>
+			<div class="split">
+				<div class="tile accent">
+					<h3>Quantum for MDE <span class="tag">Direction 1</span></h3>
+					<p style="margin:0;font-size:.93rem;color:#2c3550;">MDE can benefit from integrating quantum computing concepts and ideas. For example, by exploring quantum(-inspired) approaches for solving complex optimization problems that arise in model management, model testing, and model simulation, to name just a few tasks.</p>
+				</div>
+				<div class="tile violet">
+					<h3>MDE for Quantum <span class="tag">Direction 2</span></h3>
+					<p style="margin:0;font-size:.93rem;color:#2c3550;">Quantum software engineering can benefit from integrating concepts and ideas from MDE. Domain-specific languages, models, and model transformations let domain experts express and manipulate quantum/classical solutions at a higher level of abstraction, with a systematic generation pipeline towards executable quantum programs across platforms.</p>
+				</div>
+			</div>
+		</section>
 
-<p>At least one author of each accepted paper is required to attend the workshop and present the paper. Presented papers will be published in the MODELS companion proceedings.
-Formatting instructions are available at https://www.acm.org/publications/proceedings-template for both LaTeX and Word users. 
-LaTeX users must use the provided acmart.cls and ACM-Reference-Format.bst without modification, enable the conference format in the preamble of the document (i.e., \documentclass[sigconf,review]{acmart}), and use the ACM reference format for the bibliography (i.e., \bibliographystyle{ACM-Reference-Format}). The review option adds line numbers, thereby allowing referees to refer to specific lines in their comments. 
-</p>
+		<section class="block" id="objectives">
+			<h2>Objectives</h2>
+			<p>This workshop aims to bring together researchers from MDE with quantum computing backgrounds, as well as researchers and practitioners from other domains with problems that might be addressed by a combination of such approaches, to explore opportunities for cross-pollination, collaboration, and exciting new research avenues. Specifically, we have three objectives:</p>
+			<ol>
+				<li>Further enlarge the community of researchers and practitioners interested in combining quantum and MDE;</li>
+				<li>Highlight recent results in combining quantum and MDE techniques;</li>
+				<li>Collect challenges and case studies to help the community develop a common set of problems and a shared language.</li>
+			</ol>
+		</section>
 
-<h2>Important update on ACMs new open access publishing model for 2026 ACM Conferences!</h2> 
+		<section class="block" id="topics">
+			<h2>Topics of Interest</h2>
+			<p class="section-lede">Topics include, but are not limited to:</p>
+			<div class="split">
+				<div class="tile accent">
+					<h3>Quantum for MDE</h3>
+					<ul>
+						<li>Quantum(-inspired) algorithms / learning / optimization for modeling, model management, and model analysis &amp; verification problems</li>
+						<li>Quantum(-assisted) planning and scheduling applied to modeling processes</li>
+						<li>Quantum-supported modeling assistants and tools</li>
+						<li>Model-based synthesis and data-driven model generators</li>
+						<li>Quantum-supported model-based digital twins</li>
+						<li>Model quality support based on quantum computing</li>
+					</ul>
+				</div>
+				<div class="tile violet">
+					<h3>MDE for Quantum</h3>
+					<ul>
+						<li>Domain-specific modeling for quantum computing and quantum/classical software systems</li>
+						<li>Model-driven processes for quantum software development</li>
+						<li>Using models for quantum program representation and traceability</li>
+						<li>Model-based code generation for quantum SDKs and platforms</li>
+						<li>Architectural modeling languages for hybrid software systems</li>
+						<li>MDE for quantum machine learning and quantum workflows</li>
+						<li>Model-driven quantum software migration and interoperability</li>
+						<li>Model-based testing / analysis / validation of hybrid software systems</li>
+					</ul>
+				</div>
+				<div class="tile full">
+					<h3>General</h3>
+					<ul>
+						<li>Quantum in teaching modeling and software engineering</li>
+						<li>Tools, frameworks, and modeling standards</li>
+						<li>Experience reports, case studies, and empirical studies</li>
+						<li>Challenges and roadmaps</li>
+					</ul>
+				</div>
+			</div>
+		</section>
 
-Starting January 1, 2026, ACM has fully transitioned to Open Access. All ACM publications, including those from ACM-sponsored conferences, will be 100% Open Access. 
-Authors will have two primary options for publishing Open Access articles with ACM: the ACM Open institutional model or by paying Article Processing Charges (APCs). 
-To find out whether an APC applies to your article, please consult the list of participating institutions in ACM Open.
-Understanding that this change could present financial challenges, ACM has approved a temporary subsidy of 65% for 2026. The subsidy will offer:
-<ul>
-<li>$250 APC for ACM/SIG members</li>
-<li>$350 for non-members</li>
-</ul>
-Note for this workshop: extended abstracts and tool demonstrations will be covered by a specific agreement with MODELS and will be published open-access free of charge.	
+		<section class="block" id="submission">
+			<h2>Submission</h2>
+			<p>The QMod workshop invites authors to submit original and unpublished work. All papers must adhere, at time of submission, to the ACM formatting instructions (as provided by the conference). Papers can be submitted in the following categories:</p>
 
-<h2>Important Dates</h2>
-<ul>
-<li><strong>Paper submission:</strong> July 3rd, 2026</li>
-<li><strong>Paper notification:</strong> July 31st, 2026</li>
-<li><strong>Camera-Ready:</strong> August 14th, 2026</li>
-</ul>
-<p>Note: All deadlines are 23:59h AoE (anywhere on Earth)</p>
+			<div class="cats">
+				<div class="cat">
+					<span class="pages">Max. 10 pages</span>
+					<strong>Full Papers</strong>
+					<p>Novel research ideas and significant empirical studies.</p>
+				</div>
+				<div class="cat">
+					<span class="pages">Max. 5 pages</span>
+					<strong>Tool Demonstrations</strong>
+					<p>Novel tools and software technologies.</p>
+				</div>
+				<div class="cat">
+					<span class="pages">Max. 5 pages</span>
+					<strong>Extended Abstracts</strong>
+					<p>New ideas, challenges, ongoing research, early results, and future trends.</p>
+				</div>
+			</div>
 
-<h2>Workshop Chairs</h2>
-<ul>
-<li>Manuel Wimmer, Institute of Business Informatics - Software Engineering, Johannes Kepler University Linz, Austria</li>
-<li>Jordi Cabot, Iuxembourg Institute of Science and Technology (LIST), Luxembourg, and University of Luxembourg, Luxembourg</li>
-<li>Shaukat Ali, Simula Research Laboratory, Oslo, Norway</li>
+			<p>Papers must be submitted electronically via <a href="https://easychair.org/conferences/?conf=quantummodeling2026">EasyChair</a>.</p>
 
-</ul>
-	
-<h2>Workshop Program Committee</h2>
-TBA
-	
-</article>
+			<p>At least one author of each accepted paper is required to attend the workshop and present the paper. Presented papers will be published in the MODELS companion proceedings.</p>
+
+			<p>Formatting instructions are available at the <a href="https://www.acm.org/publications/proceedings-template">ACM proceedings template page</a> for both LaTeX and Word users. LaTeX users must use the provided <code>acmart.cls</code> and <code>ACM-Reference-Format.bst</code> without modification, enable the conference format in the preamble (<code>\documentclass[sigconf,review]{acmart}</code>), and use the ACM reference format for the bibliography (<code>\bibliographystyle{ACM-Reference-Format}</code>). The <code>review</code> option adds line numbers, allowing referees to refer to specific lines in their comments.</p>
+		</section>
+
+		<section class="block" id="open-access">
+			<h2>ACM Open Access in 2026</h2>
+			<p>Starting January 1, 2026, ACM has fully transitioned to Open Access. All ACM publications, including those from ACM-sponsored conferences, will be 100% Open Access. Authors will have two primary options for publishing Open Access articles with ACM: the <strong>ACM Open institutional model</strong> or by paying <strong>Article Processing Charges (APCs)</strong>. To find out whether an APC applies to your article, please consult the list of participating institutions in ACM Open.</p>
+			<p>Understanding that this change could present financial challenges, ACM has approved a temporary subsidy of 65% for 2026. The subsidy will offer:</p>
+			<ul>
+				<li><strong>$250 APC</strong> for ACM/SIG members</li>
+				<li><strong>$350 APC</strong> for non-members</li>
+			</ul>
+			<div class="callout">
+				<strong>Good news for QMod authors:</strong> extended abstracts and tool demonstrations are covered by a specific agreement with MODELS and will be published open-access <strong>free of charge</strong>.
+			</div>
+		</section>
+
+		<section class="block" id="dates">
+			<h2>Important Dates</h2>
+			<div class="dates">
+				<div class="date-card primary">
+					<div class="label">Paper Submission</div>
+					<div class="day">July 3, 2026</div>
+				</div>
+				<div class="date-card">
+					<div class="label">Notification</div>
+					<div class="day">July 31, 2026</div>
+				</div>
+				<div class="date-card">
+					<div class="label">Camera-Ready</div>
+					<div class="day">August 14, 2026</div>
+				</div>
+			</div>
+			<p class="dates-note">// All deadlines are 23:59h AoE (Anywhere on Earth)</p>
+		</section>
+
+		<section class="block" id="chairs">
+			<h2>Workshop Chairs</h2>
+			<div class="chairs">
+				<div class="chair">
+					<div class="avatar">MW</div>
+					<div>
+						<span class="name">Manuel Wimmer</span>
+						<span class="aff">Institute of Business Informatics — Software Engineering, Johannes Kepler University Linz, Austria</span>
+					</div>
+				</div>
+				<div class="chair">
+					<div class="avatar">JC</div>
+					<div>
+						<span class="name">Jordi Cabot</span>
+						<span class="aff">Luxembourg Institute of Science and Technology (LIST) and University of Luxembourg, Luxembourg</span>
+					</div>
+				</div>
+				<div class="chair">
+					<div class="avatar">SA</div>
+					<div>
+						<span class="name">Shaukat Ali</span>
+						<span class="aff">Simula Research Laboratory, Oslo, Norway</span>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="block" id="pc">
+			<h2>Workshop Program Committee</h2>
+			<span class="tba">// To be announced</span>
+		</section>
+
+	</article>
+</div>
+
+<footer>
+	<div class="footer-row">
+		<span>QMod 2026 &middot; 2<sup>nd</sup> Workshop on Quantum Modeling &middot; Part of</span>
+		<a class="host-card compact" href="https://conf.researchr.org/home/models-2026" aria-label="MODELS 2026 conference">
+			<img src="assets/models2026_logo.png" alt="MODELS 2026 logo" width="32" height="32">
+			<span class="text">
+				<span class="label">Part of</span>
+				<span class="wordmark">MODELS 2026</span>
+			</span>
+		</a>
+		<span>&middot; Málaga, Spain</span>
+	</div>
+</footer>
+
 </body>
 </html>
